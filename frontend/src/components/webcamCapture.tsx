@@ -19,6 +19,7 @@ export default function WebcamCapture({ onAnalysisUpdate }: WebcamCaptureProps) 
     const [progress, setProgress] = useState(0);
     const [analysisType, setAnalysisType] = useState<"squat" | "desk">("squat");
     const [error, setError] = useState<string | null>(null);
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
     const captureAndAnalyze = async () => {
         if (!webcamRef.current) return;
@@ -37,7 +38,7 @@ export default function WebcamCapture({ onAnalysisUpdate }: WebcamCaptureProps) 
             formData.append("file", file);
             formData.append("posture_type", analysisType);
 
-            const response = await axios.post("http://localhost:8000/analyze", formData, {
+            const response = await axios.post(`${baseUrl}/analyze`, formData, {
                 onUploadProgress: (e) => {
                     const percent = Math.round((e.loaded * 100) / (e.total || 1));
                     setProgress(Math.min(percent, 90));

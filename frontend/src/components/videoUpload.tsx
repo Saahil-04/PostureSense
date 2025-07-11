@@ -18,7 +18,7 @@ export default function VideoUpload({ onAnalysisComplete }: VideoUploadProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [analysisType, setAnalysisType] = useState<"squat" | "desk">("squat");
   const [error, setError] = useState<string | null>(null);
-
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const videoRef = useRef<HTMLVideoElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -73,7 +73,7 @@ export default function VideoUpload({ onAnalysisComplete }: VideoUploadProps) {
       formData.append("file", selectedFile);
       formData.append("posture_type", analysisType);
 
-      const response = await axios.post("http://localhost:8000/analyze", formData, {
+      const response = await axios.post(`${baseUrl}/analyze`, formData, {
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
           setProgress(Math.min(percent, 90));
