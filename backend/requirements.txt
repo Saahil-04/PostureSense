@@ -3,5 +3,5 @@ uvicorn[standard]
 pydantic
 python-multipart
 opencv-python
-mediapipe-nightly
 pillow
+mediapipe
