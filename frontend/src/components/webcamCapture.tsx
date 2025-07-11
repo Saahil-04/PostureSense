@@ -19,7 +19,6 @@ export default function WebcamCapture({ onAnalysisUpdate }: WebcamCaptureProps) 
     const [progress, setProgress] = useState(0);
     const [analysisType, setAnalysisType] = useState<"squat" | "desk">("squat");
     const [error, setError] = useState<string | null>(null);
-    const [lastResult, setLastResult] = useState<any>(null);
 
     const captureAndAnalyze = async () => {
         if (!webcamRef.current) return;
@@ -46,7 +45,6 @@ export default function WebcamCapture({ onAnalysisUpdate }: WebcamCaptureProps) 
             });
 
             setProgress(100);
-            setLastResult(response.data);
             onAnalysisUpdate(response.data);
         } catch (err) {
             console.error(err);

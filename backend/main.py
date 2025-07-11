@@ -7,6 +7,7 @@ import cv2
 import io
 from PIL import Image
 import mediapipe as mp
+import tempfile
 from posture_core import PostureAnalyzer, Keypoint, PostureType
 
 # Define response schema
@@ -65,28 +66,27 @@ async def analyze_posture(file: UploadFile = File(...), posture_type: str = Form
         image_np = np.array(image)
     except Exception:
         # If not an image, assume it's a video
-        video_path = "temp_video.mp4"
-        with open(video_path, "wb") as f:
-            f.write(file_bytes)
+        with tempfile.NamedTemporaryFile(suffix=".mp4") as tmp:
+            tmp.write(file_bytes)
+            tmp.flush()
 
-        cap = cv2.VideoCapture(video_path)
-        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        middle_frame = total_frames // 2
-        frame = None
+            cap = cv2.VideoCapture(tmp.name)
+            total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            middle_frame = total_frames // 2
 
-        cap.set(cv2.CAP_PROP_POS_FRAMES, middle_frame)
-        ret, frame = cap.read()
+            cap.set(cv2.CAP_PROP_POS_FRAMES, middle_frame)
+            ret, frame = cap.read()
 
-        if not ret:
-            return {
-                "posture_type": posture_type,
-                "score": 0,
-                "issues": [],
-                "recommendations": ["Failed to read video frame."]
-            }
+            if not ret:
+                return {
+                    "posture_type": posture_type,
+                    "score": 0,
+                    "issues": [],
+                    "recommendations": ["Failed to read video frame."]
+                }
 
-        image_np = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        cap.release()
+            image_np = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            cap.release()
 
     keypoints = extract_keypoints_from_image(image_np)
     if not keypoints:

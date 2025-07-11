@@ -23,8 +23,8 @@ export default function Home() {
                             <Activity className="text-white w-6 h-6" />
                         </div>
                         <div>
-                            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                PostureGuard
+                            <h1 className="text-2xl text-left font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                PostureSense
                             </h1>
                             <p className="text-sm text-gray-600">AI-Powered Posture Analysis</p>
                         </div>
@@ -81,7 +81,7 @@ export default function Home() {
                             Rule-based system crafted with fitness & ergonomic expertise.
                         </CardDescription>
                     </CardContent>
-                </Card> 
+                </Card>
             </section>
 
             {/* Main Tabs */}
