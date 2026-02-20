@@ -128,4 +128,4 @@ https://posture-sense-blond.vercel.app
 Saahil Vishwakarma  
 Portfolio: https://saahil-portfolio.vercel.app  
 GitHub: https://github.com/Saahil-04  
-LinkedIn: https://linkedin.com/in/YOUR-LINKEDIN
+LinkedIn: https://www.linkedin.com/in/saahil-vishwakarma-7a5943288/
