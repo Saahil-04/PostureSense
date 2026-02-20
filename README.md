@@ -43,7 +43,7 @@ Computer Vision:
 
 Deployment:
 - Vercel (Frontend)
-- Backend deployed via cloud service
+- Backend deployed Render
 
 ---
 
