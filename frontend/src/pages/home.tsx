@@ -112,7 +112,7 @@ export default function Home() {
             {/* Footer */}
             <footer className="mt-16 border-t bg-white/80 backdrop-blur-sm">
                 <div className="container mx-auto px-4 py-8 text-center text-gray-600">
-                    <p className="mb-2">Built with ❤️ for Realfy Technical Assessment</p>
+                    <p className="mb-2">Built with ❤️ by Saahil</p>
                     <p className="text-sm">Powered by MediaPipe, OpenCV, and React | AI Posture Detection</p>
                 </div>
             </footer>
